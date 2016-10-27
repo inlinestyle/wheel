@@ -19,29 +19,36 @@ Number.prototype.mod = function(n) {
     return ((this % n) + n) % n;
 }
 
-// List of venues. These are foursquare IDs, with the idea that eventually it'll tie in 
-venues = {
-    '116208': 'Jerry\'s Subs and Pizza',
-    '66271': 'Starbucks',
-    '5518': 'Ireland\'s Four Courts',
-    '392360': 'Five Guys',
-    '2210952': 'Uptown Cafe',
-    '207306': 'Corner Bakery Courthouse',
-    '5665': 'Summers Restaurant & Sports Bar',
-    '129724': 'Cosi',
-    '42599': 'Ray\'s Hell Burger'
-};
+var students = [
+    {name: 'Alfred'},
+    {name: 'Angel'},
+    {name: 'Asma'},
+    {name: 'Aswad'},
+    {name: 'Chris'},
+    {name: 'David'},
+    {name: 'Edgar'},
+    {name: 'Eyerin'},
+    {name: 'Ian'},
+    {name: 'Jerny'},
+    {name: 'Joshua'},
+    {name: 'Mack'},
+    {name: 'Meylan'},
+    {name: 'Nestasia'},
+    {name: 'Randy'},
+    {name: 'Rashamel'},
+    {name: 'Sidney'}
+];
 
 $(function() {
-
     var venueContainer = $('#venues ul');
-    $.each(venues, function(key, item) {
+    $.each(students, function(student) {
+        var name = student.name;
         venueContainer.append(
         $(document.createElement('li')).append(
             $(document.createElement('input')).attr({
-                id: 'venue-' + key,
-                name: item,
-                value: item,
+                id: 'student-' + name,
+                name: name,
+                value: name,
                 type: 'checkbox',
                 checked: true
             }).change(function() {
@@ -61,8 +68,8 @@ $(function() {
             })
         ).append(
             $(document.createElement('label')).attr({
-                'for': 'venue-' + key
-            }).text(item)));
+                'for': 'student-' + name
+            }).text(name)));
     });
 
     $('#venues ul>li').tsort('input', {
