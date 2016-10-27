@@ -118,9 +118,7 @@ var wheel = {
   },
 
   onTimerTick: function () {
-
     wheel.frames++;
-
     wheel.draw();
 
     var duration = (new Date().getTime() - wheel.spinStart);
@@ -133,7 +131,9 @@ var wheel = {
     } else {
       progress = duration / wheel.downTime;
       wheel.angleDelta = wheel.maxSpeed * Math.sin(progress * Math.PI / 2 + Math.PI / 2);
-      if (progress >= 1) finished = true;
+      if (progress >= 1) {
+        finished = true;
+      }
     }
 
     wheel.angleCurrent += wheel.angleDelta;
