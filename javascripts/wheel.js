@@ -119,8 +119,6 @@ var wheel = {
             wheel.spinStart = new Date().getTime();
             wheel.maxSpeed = Math.PI / (16 + Math.random()); // Randomly vary how hard the spin is
             wheel.frames = 0;
-            wheel.sound.play();
-
             wheel.timerHandle = setInterval(wheel.onTimerTick, wheel.timerDelay);
         }
     },
@@ -180,13 +178,6 @@ var wheel = {
 
     initCanvas: function() {
         var canvas = $('#wheel #canvas').get(0);
-
-        if ($.browser.msie) {
-            canvas = document.createElement('canvas');
-            $(canvas).attr('width', 1000).attr('height', 600).attr('id', 'canvas').appendTo('.wheel');
-            canvas = G_vmlCanvasManager.initElement(canvas);
-        }
-
         canvas.addEventListener('click', wheel.spin, false);
         wheel.canvasContext = canvas.getContext('2d');
     },
