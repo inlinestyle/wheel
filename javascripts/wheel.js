@@ -8,7 +8,7 @@ var students = [
     {name: 'Edgar'},
     {name: 'Eyerin'},
     {name: 'Ian'},
-    {name: 'Jerny'},
+    {name: 'Jereny'},
     {name: 'Joshua'},
     {name: 'Mack'},
     {name: 'Meylan'},
