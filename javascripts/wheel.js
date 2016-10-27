@@ -167,7 +167,6 @@ var wheel = {
     init: function(optionList) {
         try {
             wheel.initWheel();
-            wheel.initAudio();
             wheel.initCanvas();
             wheel.draw();
 
@@ -177,12 +176,6 @@ var wheel = {
             alert('Wheel is not loaded ' + exceptionData);
         }
 
-    },
-
-    initAudio: function() {
-        var sound = document.createElement('audio');
-        sound.setAttribute('src', 'http://bramp.net/javascript/wheel.mp3');
-        wheel.sound = sound;
     },
 
     initCanvas: function() {
