@@ -78,36 +78,21 @@ $(function() {
 
 // WHEEL!
 var wheel = {
-
-    timerHandle: 0,
-    timerDelay: 33,
-
     angleCurrent: 0,
     angleDelta: 0,
-
-    size: 290,
-
     canvasContext: null,
-
-    colors: ['#ffff00', '#ffc700', '#ff9100', '#ff6301', '#ff0000', '#c6037e',
-             '#713697', '#444ea1', '#2772b2', '#0297ba', '#008e5b', '#8ac819'],
-
-    segments: [],
-
-    colorCache: [],
-
-    maxSpeed: Math.PI / 16,
-
-    upTime: 1000,
-    // How long to spin up for (in ms)
-    downTime: 6000,
-    // How long to slow down for (in ms)
-    spinStart: 0,
-
-    frames: 0,
-
     centerX: 300,
     centerY: 300,
+    colorCache: [],
+    downTime: 6000,
+    frames: 0,
+    maxSpeed: Math.PI / 16,
+    segments: [],
+    size: 290,
+    spinStart: 0,
+    timerDelay: 33,
+    timerHandle: 0,
+    upTime: 1000,
 
     spin: function() {
 
@@ -180,7 +165,7 @@ var wheel = {
     },
 
     initWheel: function() {
-        shuffle(wheel.colors);
+        shuffle(spectrum);
     },
 
     // Called when segments have changed
@@ -192,12 +177,11 @@ var wheel = {
 
         var segments = wheel.segments;
         var len = segments.length;
-        var colors = wheel.colors;
-        var colorLen = colors.length;
+        var colorLen = spectrum.length;
 
         var colorCache = [];
         for (var i = 0; i < len; i++) {
-            var color = colors[mod(hashCode(segments[i]), colorLen)];
+            var color = spectrum[mod(hashCode(segments[i]), colorLen)];
             colorCache.push(color);
         }
         wheel.colorCache = colorCache;
@@ -254,7 +238,6 @@ var wheel = {
 
         var segments = wheel.segments;
         var len = wheel.segments.length;
-        var colors = wheel.colorCache;
 
         var value = segments[key];
 
@@ -269,7 +252,7 @@ var wheel = {
         //ctx.clip(); // It would be best to clip, but we can double performance without it
         ctx.closePath();
 
-        ctx.fillStyle = colors[key];
+        ctx.fillStyle = wheel.colorCache[key];
         ctx.fill();
         ctx.stroke();
 
@@ -293,8 +276,6 @@ var wheel = {
 
         var segments = wheel.segments;
         var len = wheel.segments.length;
-        var colors = wheel.colors;
-        var colorsLen = wheel.colors.length;
 
         var centerX = wheel.centerX;
         var centerY = wheel.centerY;
@@ -351,3 +332,7 @@ window.onload = function() {
         window.scrollTo(0, 1);
     }, 0);
 };
+
+
+var spectrum = ['#A2395B', '#A63552', '#AA3149', '#AE2D40', '#B22937', '#A23A53', '#924B6F', '#825C8B', '#6F6DA7', '#A63570', '#AC2F5A', '#B22944', '#B8232E', '#C11C17', '#A72A37', '#8D3857', '#734677', '#575597', '#A6358C', '#B43B6A', '#C24148', '#D04726', '#DE5003', '#B84D24', '#924A45', '#6C4766', '#434187', '#A650A0', '#B55A80', '#C46460', '#D36E40', '#E27A1D', '#B26331', '#824C45', '#523559', '#1F1D6D', '#A660AC', '#B67288', '#C68464', '#D69640', '#E6AA19', '#BC892E', '#926843', '#684758', '#3B256D', '#A670B8', '#B8878E', '#CA9E64', '#DCB53A', '#EFCE10', '#C8A628', '#A17E40', '#7A5658', '#502E72', '#80529A', '#98777A', '#B09C5A', '#C8C13A', '#E0E61A', '#C8C13A', '#B09C5A', '#98777A', '#80529A', '#502E72', '#675860', '#7E824E', '#95AC3C', '#ACD62A', '#ABBD4D', '#AAA470', '#A98B93', '#A670B8', '#3B256D', '#4C4D60', '#5D7553', '#6E9D46', '#80C837', '#89AE54', '#929471', '#9B7A8E', '#A660AC', '#1F1D6D', '#2A3F5D', '#35614D', '#40833D', '#4CA82B', '#629248', '#787C65', '#8E6682', '#A650A0', '#434187', '#3B536E', '#336555', '#2B773C', '#228B22', '#43763C', '#646156', '#854C70', '#A6358C', '#575597', '#4A678D', '#3D7983', '#308B79', '#229F6E', '#43856E', '#646B6E', '#85516E', '#A63570', '#6F6DA7', '#5C7EA7', '#498FA7', '#36A0A7', '#20B2AA', '#409497', '#607684', '#805871', '#A2395B', '#7F91C3', '#789AC4', '#71A3C5', '#6AACC6', '#60B6CA', '#7493A6', '#887082', '#9C4D5E', '#B22937', '#71A3C5', '#79A9CD', '#81AFD5', '#89B5DD', '#93BDE7', '#9E95B3', '#A96D7F', '#B4454B', '#C11C17', '#60B6CA', '#67ADC9', '#6EA4C8', '#759BC7', '#7F91C3', '#968193', '#AD7163', '#C46133', '#DE5003', '#20B2AA', '#33A1AA', '#4690AA', '#597FAA', '#6F6DA7', '#8B7085', '#A77363', '#C37641', '#E27A1D', '#229F6E', '#2F8D78', '#3C7B82', '#49698C', '#575597', '#7A6A78', '#9D7F59', '#C0943A', '#E6AA19', '#228B22', '#2A793B', '#326754', '#3A556D', '#434187', '#6E646A', '#99874D', '#C4AA30', '#EFCE10', '#4CA82B', '#41863B', '#36644B', '#2B425B', '#1F1D6D', '#4F4F58', '#808244', '#B0B42F', '#E0E61A', '#80C837', '#6FA044', '#5E7851', '#4D505E', '#3B256D', '#57515C', '#747E4C', '#90AA3B', '#ACD62A'];
+
