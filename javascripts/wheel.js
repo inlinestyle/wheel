@@ -41,7 +41,7 @@ var students = [
 
 $(function() {
     var venueContainer = $('#venues ul');
-    $.each(students, function(student) {
+    students.forEach(function(student) {
         var name = student.name;
         venueContainer.append(
         $(document.createElement('li')).append(
