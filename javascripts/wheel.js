@@ -335,7 +335,7 @@ var wheel = {
 };
 
 window.onload = function() {
-    wheel.init();
+
 
     var segments = [];
     $.each($('#students input:checked'), function(key, cbox) {
@@ -343,6 +343,7 @@ window.onload = function() {
     });
 
     wheel.segments = segments;
+    wheel.init();
     wheel.update();
 
     // Hide the address bar (for mobile devices)!
