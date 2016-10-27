@@ -94,8 +94,8 @@ var wheel = {
 
     segments: [],
 
-    seg_colors: [],
-    // Cache of segments to colors
+    colorCache: [],
+
     maxSpeed: Math.PI / 16,
 
     upTime: 1000,
@@ -200,7 +200,7 @@ var wheel = {
             var color = colors[mod(hashCode(segments[i]), colorLen)];
             colorCache.push(color);
         }
-        wheel.seg_color = seg_color;
+        wheel.colorCache = colorCache;
         wheel.draw();
     },
 
@@ -254,7 +254,7 @@ var wheel = {
 
         var segments = wheel.segments;
         var len = wheel.segments.length;
-        var colors = wheel.seg_color;
+        var colors = wheel.colorCache;
 
         var value = segments[key];
 
@@ -331,8 +331,8 @@ var wheel = {
         ctx.lineWidth = 10;
         ctx.strokeStyle = '#000000';
         ctx.stroke();
-    },
-}
+    }
+};
 
 window.onload = function() {
     wheel.init();
@@ -349,4 +349,4 @@ window.onload = function() {
     setTimeout(function() {
         window.scrollTo(0, 1);
     }, 0);
-}
+};
