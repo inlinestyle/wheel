@@ -21,23 +21,23 @@ Number.prototype.mod = function(n) {
 
 // List of venues. These are foursquare IDs, with the idea that eventually it'll tie in 
 venues = {
-    "116208": "Jerry's Subs and Pizza",
-    "66271": "Starbucks",
-    "5518": "Ireland's Four Courts",
-    "392360": "Five Guys",
-    "2210952": "Uptown Cafe",
-    "207306": "Corner Bakery Courthouse",
-    "41457": "Delhi Dhaba",
-    "101161": "TNR Cafe",
-    "257424": "Afghan Kabob House",
-    "512060": "The Perfect Pita",
-    "66244": "California Tortilla",
-    "352867": "Pho 75 - Rosslyn",
-    "22493": "Ragtime",
-    "268052": "Subway",
-    "5665": "Summers Restaurant & Sports Bar",
-    "129724": "Cosi",
-    "42599": "Ray's Hell Burger"
+    '116208': 'Jerry\'s Subs and Pizza',
+    '66271': 'Starbucks',
+    '5518': 'Ireland\'s Four Courts',
+    '392360': 'Five Guys',
+    '2210952': 'Uptown Cafe',
+    '207306': 'Corner Bakery Courthouse',
+    '41457': 'Delhi Dhaba',
+    '101161': 'TNR Cafe',
+    '257424': 'Afghan Kabob House',
+    '512060': 'The Perfect Pita',
+    '66244': 'California Tortilla',
+    '352867': 'Pho 75 - Rosslyn',
+    '22493': 'Ragtime',
+    '268052': 'Subway',
+    '5665': 'Summers Restaurant & Sports Bar',
+    '129724': 'Cosi',
+    '42599': 'Ray\'s Hell Burger'
 };
 
 $(function() {
@@ -45,8 +45,8 @@ $(function() {
     var venueContainer = $('#venues ul');
     $.each(venues, function(key, item) {
         venueContainer.append(
-        $(document.createElement("li")).append(
-        $(document.createElement("input")).attr({
+        $(document.createElement('li')).append(
+        $(document.createElement('input')).attr({
             id: 'venue-' + key,
             name: item,
             value: item,
@@ -74,8 +74,8 @@ $(function() {
         }).text(item)))
     });
 
-    $('#venues ul>li').tsort("input", {
-        attr: "value"
+    $('#venues ul>li').tsort('input', {
+        attr: 'value'
     });
 });
 
@@ -154,13 +154,13 @@ var wheel = {
             wheel.timerHandle = 0;
             wheel.angleDelta = 0;
 
-            $("#counter").html((wheel.frames / duration * 1000) + " FPS");
+            $('#counter').html((wheel.frames / duration * 1000) + ' FPS');
         }
 
 /*
         // Display RPM
         var rpm = (wheel.angleDelta * (1000 / wheel.timerDelay) * 60) / (Math.PI * 2);
-        $("#counter").html( Math.round(rpm) + " RPM" );
+        $('#counter').html( Math.round(rpm) + ' RPM' );
          */
     },
 
@@ -194,8 +194,8 @@ var wheel = {
             canvas = G_vmlCanvasManager.initElement(canvas);
         }
 
-        canvas.addEventListener("click", wheel.spin, false);
-        wheel.canvasContext = canvas.getContext("2d");
+        canvas.addEventListener('click', wheel.spin, false);
+        wheel.canvasContext = canvas.getContext('2d');
     },
 
     initWheel: function() {
@@ -259,10 +259,10 @@ var wheel = {
         var i = wheel.segments.length - Math.floor((wheel.angleCurrent / (Math.PI * 2)) * wheel.segments.length) - 1;
 
         // Now draw the winning name
-        ctx.textAlign = "left";
-        ctx.textBaseline = "middle";
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
         ctx.fillStyle = '#000000';
-        ctx.font = "2em Arial";
+        ctx.font = '2em Arial';
         ctx.fillText(wheel.segments[i], centerX + size + 25, centerY);
     },
 
@@ -324,9 +324,9 @@ var wheel = {
 
         ctx.lineWidth = 1;
         ctx.strokeStyle = '#000000';
-        ctx.textBaseline = "middle";
-        ctx.textAlign = "center";
-        ctx.font = "1.4em Arial";
+        ctx.textBaseline = 'middle';
+        ctx.textAlign = 'center';
+        ctx.font = '1.4em Arial';
 
         for (var i = 1; i <= len; i++) {
             var angle = PI2 * (i / len) + angleCurrent;
