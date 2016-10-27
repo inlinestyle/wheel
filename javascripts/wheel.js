@@ -1,24 +1,3 @@
-// Helpers
-shuffle = function(o) {
-    for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-};
-
-String.prototype.hashCode = function() {
-    // See http://www.cse.yorku.ca/~oz/hash.html        
-    var hash = 5381;
-    for (i = 0; i < this.length; i++) {
-        char = this.charCodeAt(i);
-        hash = ((hash << 5) + hash) + char;
-        hash = hash & hash; // Convert to 32bit integer
-    }
-    return hash;
-}
-
-Number.prototype.mod = function(n) {
-    return ((this % n) + n) % n;
-}
-
 var students = [
     {name: 'Alfred'},
     {name: 'Angel'},
@@ -39,11 +18,31 @@ var students = [
     {name: 'Sidney'}
 ];
 
+var shuffle = function(o) {
+    for (var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+};
+
+var hashCode = function(string) {
+    // See http://www.cse.yorku.ca/~oz/hash.html
+    var hash = 5381;
+    for (i = 0; i < string.length; i++) {
+        var char = string.charCodeAt(i);
+        hash = ((hash << 5) + hash) + char;
+        hash = hash & hash; // Convert to 32bit integer
+    }
+    return hash;
+};
+
+var mod = function(a, b) {
+    return ((a % b) + b) % b;
+};
+
 $(function() {
-    var venueContainer = $('#venues ul');
+    var studentContainer = $('#students ul');
     students.forEach(function(student) {
         var name = student.name;
-        venueContainer.append(
+        studentContainer.append(
         $(document.createElement('li')).append(
             $(document.createElement('input')).attr({
                 id: 'student-' + name,
@@ -72,7 +71,7 @@ $(function() {
             }).text(name)));
     });
 
-    $('#venues ul>li').tsort('input', {
+    $('#students ul>li').tsort('input', {
         attr: 'value'
     });
 });
@@ -101,7 +100,7 @@ var wheel = {
 
     upTime: 1000,
     // How long to spin up for (in ms)
-    downTime: 17000,
+    downTime: 6000,
     // How long to slow down for (in ms)
     spinStart: 0,
 
@@ -196,13 +195,12 @@ var wheel = {
         var colors = wheel.colors;
         var colorLen = colors.length;
 
-        // Generate a color cache (so we have consistant coloring)
-        var seg_color = new Array();
-        for (var i = 0; i < len; i++)
-        seg_color.push(colors[segments[i].hashCode().mod(colorLen)]);
-
+        var colorCache = [];
+        for (var i = 0; i < len; i++) {
+            var color = colors[mod(hashCode(segments[i]), colorLen)];
+            colorCache.push(color);
+        }
         wheel.seg_color = seg_color;
-
         wheel.draw();
     },
 
@@ -340,7 +338,7 @@ window.onload = function() {
     wheel.init();
 
     var segments = [];
-    $.each($('#venues input:checked'), function(key, cbox) {
+    $.each($('#students input:checked'), function(key, cbox) {
         segments.push(cbox.value);
     });
 
