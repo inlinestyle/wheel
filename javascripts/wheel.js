@@ -76,7 +76,6 @@ $(function() {
     });
 });
 
-// WHEEL!
 var wheel = {
     angleCurrent: 0,
     angleDelta: 0,
@@ -95,7 +94,6 @@ var wheel = {
     upTime: 1000,
 
     spin: function() {
-
         // Start the wheel only if it's not already spinning
         if (wheel.timerHandle == 0) {
             wheel.spinStart = new Date().getTime();
@@ -137,7 +135,7 @@ var wheel = {
             $('#counter').html((wheel.frames / duration * 1000) + ' FPS');
         }
 
-/*
+        /*
         // Display RPM
         var rpm = (wheel.angleDelta * (1000 / wheel.timerDelay) * 60) / (Math.PI * 2);
         $('#counter').html( Math.round(rpm) + ' RPM' );
@@ -149,13 +147,10 @@ var wheel = {
             wheel.initWheel();
             wheel.initCanvas();
             wheel.draw();
-
             $.extend(wheel, optionList);
-
         } catch (exceptionData) {
             alert('Wheel is not loaded ' + exceptionData);
         }
-
     },
 
     initCanvas: function() {
@@ -168,11 +163,10 @@ var wheel = {
         shuffle(spectrum);
     },
 
-    // Called when segments have changed
     update: function() {
         // Ensure we start mid way on a item
-        //var r = Math.floor(Math.random() * wheel.segments.length);
-        var r = 0;
+        var r = Math.floor(Math.random() * wheel.segments.length);
+        //var r = 0;
         wheel.angleCurrent = ((r + 0.5) / wheel.segments.length) * Math.PI * 2;
 
         var segments = wheel.segments;
@@ -316,8 +310,6 @@ var wheel = {
 };
 
 window.onload = function() {
-
-
     var segments = [];
     $.each($('#students input:checked'), function(key, cbox) {
         segments.push(cbox.value);
