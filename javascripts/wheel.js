@@ -287,10 +287,10 @@ var wheel = {
     var PI2 = Math.PI * 2;
 
     ctx.lineWidth = 1;
-    ctx.strokeStyle = '#000000';
+    ctx.strokeStyle = '#FFFFFF';
     ctx.textBaseline = 'middle';
     ctx.textAlign = 'center';
-    ctx.font = '1.4em Arial';
+    ctx.font = '1.6em Arial';
 
     for (var i = 1; i <= len; i++) {
       var angle = PI2 * (i / len) + angleCurrent;
