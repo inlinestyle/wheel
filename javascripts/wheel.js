@@ -97,7 +97,7 @@ var wheel = {
   centerX: 300,
   centerY: 300,
   colorCache: [],
-  downTime: 6000,
+  downTime: 2000,
   frames: 0,
   maxSpeed: Math.PI / 16,
   segments: [],
