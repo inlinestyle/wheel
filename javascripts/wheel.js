@@ -111,7 +111,7 @@ var wheel = {
     // Start the wheel only if it's not already spinning
     if (wheel.timerHandle == 0) {
       wheel.spinStart = new Date().getTime();
-      wheel.maxSpeed = Math.PI / (16 + Math.random()); // Randomly vary how hard the spin is
+      wheel.maxSpeed = Math.PI / (16 + (Math.random() * 10)); // Randomly vary how hard the spin is
       wheel.frames = 0;
       wheel.timerHandle = setInterval(wheel.onTimerTick, wheel.timerDelay);
     }
